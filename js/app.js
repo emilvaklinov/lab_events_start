@@ -4,25 +4,28 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const theForm = document.querySelector('#new-item-form');
   theForm.addEventListener('submit', handleFormSubmition);
+
+  const button = document.querySelector('#clear_button');
+  button.addEventListener('click', handleClearButttonClick);
 })
 
 
 const handleFormSubmition = function( event ){
   event.preventDefault();
-  let paragrphResult1 = document.createElement('p');
-  let paragrphResult2 = document.createElement('p');
-  let paragrphResult3 = document.createElement('p');
-
+  let paragrphResult = document.createElement('li');
   const title = event.target.title.value
   const author = event.target.author.value
   const category = event.target.category.value
 
-  paragrphResult1.textContent = `Title: ${title}`;
-  paragrphResult2.textContent = `Author:${ author}`;
-  paragrphResult3.textContent = `Category: ${category}`;
+  paragrphResult.textContent = `Title: ${title} Author:${author} Category: ${category}`;
   const addedBooks = document.querySelector('#added_books');
-  addedBooks.appendChild(paragrphResult1);
-  addedBooks.appendChild(paragrphResult2);
-  addedBooks.appendChild(paragrphResult3);
+  addedBooks.appendChild(paragrphResult);
   document.querySelector('#new-item-form').reset();
+}
+
+
+
+const handleClearButttonClick= function(){
+  const para = document.querySelector('#added_books');
+  para.textContent = "";
 }
